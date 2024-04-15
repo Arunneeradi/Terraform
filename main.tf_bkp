@@ -1,0 +1,24 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"  #provider details
+      version = "~> 4.16"
+    }
+  }
+
+  required_version = ">= 1.2.0"  #required high version of 1.2.0
+}
+
+provider "aws" {
+  region  = "us-west-2"  # you can also provide region
+}
+
+resource "aws_instance" "app_server" {    #resource
+  ami           = "ami-830c94e3"           #parameters
+  instance_type = "t2.micro"
+
+  tags = {
+    Name = "Terraform_Demo"
+  }
+}
+
